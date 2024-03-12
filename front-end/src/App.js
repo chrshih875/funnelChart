@@ -5,7 +5,7 @@ import axios from 'axios';
 class ApexChart extends React.Component {
   constructor(props) {
     super(props);
-
+    // initialize the state
     this.state = {
       series: [],
       options: {
@@ -49,10 +49,11 @@ class ApexChart extends React.Component {
       },
     };
   }
-
+  // fetch data from Django api
   componentDidMount() {
     axios.get('http://localhost:8000/population/')
       .then(response => {
+        // modify the data so Apex Charts can read it
         const series = [
           {
               name: 'Males',
@@ -63,6 +64,7 @@ class ApexChart extends React.Component {
               data: response.data.map(entry => parseFloat(entry.Female))
           }
       ];
+      // set the new series to this.state
         this.setState({ series });
       })
       .catch(error => {

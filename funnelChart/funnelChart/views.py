@@ -2,7 +2,6 @@ from django.http import JsonResponse
 import csv
 
 def get_population_data(request):
-    # Construct the path to the CSV file relative to the views.py file
     csv_file_path = 'raw_data.csv'
 
     population_data = []
